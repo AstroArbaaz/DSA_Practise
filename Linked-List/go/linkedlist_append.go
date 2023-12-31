@@ -33,11 +33,26 @@ func (list *SinglyLinkedList) Append(data int) {
     list.Length++ // Increment the length
 }
 
+// prepend
+func (list *SinglyLinkedList) prepend(data int) {
+    newNode := NewNode(data)
+    if list.Length == 0 {
+        list.Head = newNode // If list is empty, new node becomes the head
+        list.Tail = newNode // And also the tail
+    } else {
+        newNode.Next = list.Head
+        list.Head = newNode
+    }
+    list.Length++ // Increment the length
+}
+
 // Main function to demonstrate usage
 func main() {
     list := &SinglyLinkedList{}
     list.Append(4)
     list.Append(5)
+    list.prepend(4)
+    list.prepend(6)
 
     fmt.Println(list.Head.Data)  // Output: 4
     fmt.Println(list.Tail.Data)  // Output: 5
